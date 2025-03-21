@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { coinsApi } from "@/app/api/coinsApi";
+import { coinsApi } from "@/api/coinsApi";
 
 const coinsKeys = {
   all: ["coins"],

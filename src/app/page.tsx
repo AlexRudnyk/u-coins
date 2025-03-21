@@ -6,8 +6,7 @@ import {
 
 import CoinsList from "@/components/CoinsList";
 
-import { coinsApi } from "./api/coinsApi";
-
+import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
 
 export default async function Home() {
