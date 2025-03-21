@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, Suspense, useState } from "react";
+import { FC, useState } from "react";
 import Slider from "@mui/material/Slider";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -41,20 +41,18 @@ const PriceSlider: FC<Props> = ({ prices }) => {
   };
 
   return (
-    <Suspense>
-      <div style={{ padding: "30px", width: "300px" }}>
-        <Slider
-          getAriaLabel={() => "Minimum distance"}
-          value={value}
-          onChange={handleChange}
-          valueLabelDisplay="auto"
-          disableSwap
-          min={minPrice}
-          max={maxPrice}
-          step={50}
-        />
-      </div>
-    </Suspense>
+    <div style={{ padding: "30px", width: "300px" }}>
+      <Slider
+        getAriaLabel={() => "Minimum distance"}
+        value={value}
+        onChange={handleChange}
+        valueLabelDisplay="auto"
+        disableSwap
+        min={minPrice}
+        max={maxPrice}
+        step={50}
+      />
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 
 import PriceSlider from "../PriceSlider";
@@ -13,7 +14,7 @@ const CoinsList = () => {
   const priceArray = coins.map((coin) => coin.price);
 
   return (
-    <>
+    <Suspense>
       <PriceSlider prices={priceArray} />
       <ul
         style={{
@@ -29,7 +30,7 @@ const CoinsList = () => {
           </li>
         ))}
       </ul>
-    </>
+    </Suspense>
   );
 };
 
