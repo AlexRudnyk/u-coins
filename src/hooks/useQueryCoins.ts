@@ -1,16 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { coinsApi } from "@/app/api/coinsApi";
+import { coinsApi } from "@/api/coinsApi";
 
 const coinsKeys = {
   all: ["coins"],
   //   getOne: (id: string) => [...productsKeys.all, id],
 };
 
-const useQueryCoins = () =>
+const useQueryCoins = (fromPrice?: string, toPrice?: string) =>
   useQuery({
-    queryKey: coinsKeys.all,
-    queryFn: () => coinsApi.getCoins(),
+    queryKey: ["coins", fromPrice, toPrice],
+    queryFn: () => coinsApi.getCoins(fromPrice, toPrice),
   });
 
 export { useQueryCoins, coinsKeys };

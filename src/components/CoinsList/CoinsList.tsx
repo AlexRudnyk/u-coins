@@ -2,13 +2,19 @@
 
 import { Suspense } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 import PriceSlider from "../PriceSlider";
 
 import { useQueryCoins } from "@/hooks/useQueryCoins";
 
 const CoinsList = () => {
-  const { data: coins } = useQueryCoins();
+  const searchParams = useSearchParams();
+
+  const fromPrice = searchParams.get("fromPrice");
+  const toPrice = searchParams.get("toPrice");
+
+  const { data: coins } = useQueryCoins(fromPrice || "", toPrice || "");
   if (!coins) return;
 
   const priceArray = coins.map((coin) => coin.price);
