@@ -7,10 +7,10 @@ const coinsKeys = {
   //   getOne: (id: string) => [...productsKeys.all, id],
 };
 
-const useQueryCoins = () =>
+const useQueryCoins = (fromPrice?: string, toPrice?: string) =>
   useQuery({
-    queryKey: coinsKeys.all,
-    queryFn: () => coinsApi.getCoins(),
+    queryKey: ["coins", fromPrice, toPrice],
+    queryFn: () => coinsApi.getCoins(fromPrice, toPrice),
   });
 
 export { useQueryCoins, coinsKeys };

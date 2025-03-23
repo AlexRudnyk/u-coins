@@ -32,11 +32,9 @@ const PriceSlider: FC<Props> = ({ prices }) => {
     if (activeThumb === 0) {
       setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
       params.set("fromPrice", String(newValue[0]));
-      // push(`?${params}`);
     } else {
       setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
       params.set("toPrice", String(newValue[1]));
-      // push(`?${params}`);
     }
 
     push(`?${params}`);
@@ -50,8 +48,8 @@ const PriceSlider: FC<Props> = ({ prices }) => {
         onChange={handleChange}
         valueLabelDisplay="auto"
         disableSwap
-        min={minPrice}
-        max={maxPrice}
+        min={100}
+        max={800}
         step={50}
       />
     </div>
