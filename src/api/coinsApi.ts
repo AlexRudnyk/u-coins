@@ -6,7 +6,7 @@ export const coinsApi = {
   getCoins: async (
     fromPrice?: string,
     toPrice?: string
-  ): Promise<CoinType[] | undefined> => {
+  ): Promise<CoinType[]> => {
     try {
       const { data } = await axiosInstance.get<CoinType[]>(
         `coins?fromPrice=${fromPrice}&toPrice=${toPrice}`
