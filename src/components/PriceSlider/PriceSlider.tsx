@@ -1,8 +1,11 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import Slider from "@mui/material/Slider";
+import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import { useQueryCoins } from "@/hooks/useQueryCoins";
 
 type Props = {
   prices: number[];
@@ -19,6 +22,14 @@ const PriceSlider: FC<Props> = ({ prices }) => {
   const [value, setValue] = useState<number[]>([minPrice, maxPrice]);
 
   const minDistance = 100;
+
+  const debouncedPush = useMemo(
+    () =>
+      debounce((params: URLSearchParams) => {
+        push(`?${params.toString()}`);
+      }, 500),
+    [push]
+  );
 
   const handleChange = (
     event: Event,
@@ -37,11 +48,44 @@ const PriceSlider: FC<Props> = ({ prices }) => {
       params.set("toPrice", String(newValue[1]));
     }
 
-    push(`?${params}`);
+    debouncedPush(params);
   };
 
   return (
     <div style={{ padding: "30px", width: "300px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "10px",
+        }}
+      >
+        <div
+          style={{
+            width: "70px",
+            height: "30px",
+            border: "1px solid gray",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {value[0]}
+        </div>
+        <div> - </div>
+        <div
+          style={{
+            width: "70px",
+            height: "30px",
+            border: "1px solid gray",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {value[1]}
+        </div>
+      </div>
       <Slider
         getAriaLabel={() => "Minimum distance"}
         value={value}
