@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   dehydrate,
   HydrationBoundary,
@@ -12,14 +13,19 @@ import { coinsKeys } from "@/hooks/useQueryCoins";
 export default async function Home() {
   const queryClient = new QueryClient();
 
+  const fromPrice = "1";
+  const toPrice = "1000";
+
   await queryClient.prefetchQuery({
-    queryKey: coinsKeys.all,
-    queryFn: coinsApi.getCoins,
+    queryKey: ["coins", fromPrice, toPrice],
+    queryFn: () => coinsApi.getCoins(fromPrice, toPrice),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <CoinsList />
+      <Suspense>
+        <CoinsList />
+      </Suspense>
     </HydrationBoundary>
   );
 }
