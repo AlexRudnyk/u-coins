@@ -1,19 +1,33 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
+import { debounce } from "lodash";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import s from "./SearchInput.module.css";
 const SearchInput = () => {
+  const [query, setQuery] = useState<string>("");
+  const searchParams = useSearchParams();
+  const { push } = useRouter();
+  const params = new URLSearchParams(searchParams.toString());
+
   const initialValues = {
     search: "",
   };
+
+  const debouncedSetQuery = useMemo(
+    () => debounce((value: string) => setQuery(value), 500),
+    []
+  );
 
   const handleSubmit = (
     values: { search: string },
     { resetForm }: FormikHelpers<{ search: string }>
   ) => {
-    console.log("VALUES", values);
+    params.set("q", query);
+    push(`?${params}`);
     resetForm();
   };
 
@@ -26,7 +40,10 @@ const SearchInput = () => {
             id="outlined-basic"
             label="Search"
             variant="outlined"
-            onChange={(event) => setFieldValue("search", event.target.value)}
+            onChange={(event) => {
+              setFieldValue("search", event.target.value);
+              debouncedSetQuery(event.target.value);
+            }}
             value={values.search}
           />
           {errors.search && <div>{errors.search}</div>}
