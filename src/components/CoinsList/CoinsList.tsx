@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
@@ -23,17 +22,15 @@ const CoinsList = () => {
   if (!coins) return;
 
   return (
-    <Suspense>
-      <ul className={s.coinsList}>
-        {coins?.map((coin) => (
-          <li key={coin._id}>
-            <Image src={coin.photoURL[0]} alt="coin" width={150} height={150} />
-            <p>{coin.title}</p>
-            <p>Price: {coin.price} UAH</p>
-          </li>
-        ))}
-      </ul>
-    </Suspense>
+    <ul className={s.coinsList}>
+      {coins?.map((coin) => (
+        <li key={coin._id}>
+          <Image src={coin.photoURL[0]} alt="coin" width={150} height={150} />
+          <p>{coin.title}</p>
+          <p>Price: {coin.price} UAH</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import {
   dehydrate,
   HydrationBoundary,
@@ -31,9 +32,11 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <SearchInput />
-      <PriceSlider prices={priceArray} />
-      <CoinsList />
+      <Suspense>
+        <SearchInput />
+        <PriceSlider prices={priceArray} />
+        <CoinsList />
+      </Suspense>
     </HydrationBoundary>
   );
 }

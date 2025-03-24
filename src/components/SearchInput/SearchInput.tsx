@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
 import { debounce } from "lodash";
@@ -31,30 +31,28 @@ const SearchInput = () => {
   };
 
   return (
-    <Suspense>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ errors, setFieldValue, values }) => (
-          <Form>
-            <TextField
-              name="search"
-              id="outlined-basic"
-              label="Search"
-              variant="outlined"
-              onChange={(event) => {
-                setFieldValue("search", event.target.value);
-                debouncedSetQuery(event.target.value);
-              }}
-              value={values.search}
-            />
-            {errors.search && <div>{errors.search}</div>}
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ errors, setFieldValue, values }) => (
+        <Form>
+          <TextField
+            name="search"
+            id="outlined-basic"
+            label="Search"
+            variant="outlined"
+            onChange={(event) => {
+              setFieldValue("search", event.target.value);
+              debouncedSetQuery(event.target.value);
+            }}
+            value={values.search}
+          />
+          {errors.search && <div>{errors.search}</div>}
 
-            <Button type="submit" variant="contained">
-              Submit
-            </Button>
-          </Form>
-        )}
-      </Formik>
-    </Suspense>
+          <Button type="submit" variant="contained">
+            Submit
+          </Button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
