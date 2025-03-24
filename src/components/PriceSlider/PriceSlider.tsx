@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useMemo, useState } from "react";
+import { FC, Suspense, useMemo, useState } from "react";
 import Slider from "@mui/material/Slider";
 import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -51,23 +51,25 @@ const PriceSlider: FC<Props> = ({ prices }) => {
   };
 
   return (
-    <div className={s.container}>
-      <div className={s.priceRangeWrapper}>
-        <div className={s.priceIndicator}>{value[0]}</div>
-        <div> - </div>
-        <div className={s.priceIndicator}>{value[1]}</div>
+    <Suspense>
+      <div className={s.container}>
+        <div className={s.priceRangeWrapper}>
+          <div className={s.priceIndicator}>{value[0]}</div>
+          <div> - </div>
+          <div className={s.priceIndicator}>{value[1]}</div>
+        </div>
+        <Slider
+          getAriaLabel={() => "Minimum distance"}
+          value={value}
+          onChange={handleChange}
+          valueLabelDisplay="auto"
+          disableSwap
+          min={100}
+          max={800}
+          step={50}
+        />
       </div>
-      <Slider
-        getAriaLabel={() => "Minimum distance"}
-        value={value}
-        onChange={handleChange}
-        valueLabelDisplay="auto"
-        disableSwap
-        min={100}
-        max={800}
-        step={50}
-      />
-    </div>
+    </Suspense>
   );
 };
 
