@@ -5,11 +5,13 @@ import { CoinType } from "@/types/coin";
 export const coinsApi = {
   getCoins: async (
     fromPrice?: string,
-    toPrice?: string
+    toPrice?: string,
+    q?: string
   ): Promise<CoinType[]> => {
     try {
+      console.log("QUERY", fromPrice, toPrice, q);
       const { data } = await axiosInstance.get<CoinType[]>(
-        `coins?fromPrice=${fromPrice}&toPrice=${toPrice}`
+        `coins?fromPrice=${fromPrice}&toPrice=${toPrice}&q=${q}`
       );
       return data ?? [];
     } catch (error: any) {

@@ -1,0 +1,19 @@
+.container {
+  width: 300px;
+  padding: 30px;
+}
+
+.priceRangeWrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.priceIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 30px;
+  border: 1px solid gray;
+}
