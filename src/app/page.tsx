@@ -17,14 +17,15 @@ export default async function Home() {
 
   const fromPrice = "1";
   const toPrice = "1000";
+  const q = "";
 
   await queryClient.prefetchQuery({
-    queryKey: coinsKeys.all(fromPrice, toPrice),
-    queryFn: () => coinsApi.getCoins(fromPrice, toPrice),
+    queryKey: coinsKeys.all(fromPrice, toPrice, q),
+    queryFn: () => coinsApi.getCoins(fromPrice, toPrice, q),
   });
 
   const coins: CoinType[] | undefined = queryClient.getQueryData(
-    coinsKeys.all(fromPrice, toPrice)
+    coinsKeys.all(fromPrice, toPrice, q)
   );
   const priceArray = coins?.map((coin) => coin.price) ?? [];
 

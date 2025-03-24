@@ -6,7 +6,6 @@ import { Form, Formik, FormikHelpers } from "formik";
 import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import s from "./SearchInput.module.css";
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");
   const searchParams = useSearchParams();

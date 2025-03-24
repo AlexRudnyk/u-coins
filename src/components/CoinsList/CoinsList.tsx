@@ -12,8 +12,13 @@ const CoinsList = () => {
 
   const fromPrice = searchParams.get("fromPrice");
   const toPrice = searchParams.get("toPrice");
+  const q = searchParams.get("q");
 
-  const { data: coins } = useQueryCoins(fromPrice || "", toPrice || "");
+  const { data: coins } = useQueryCoins(
+    fromPrice || "",
+    toPrice || "",
+    q || ""
+  );
   if (!coins) return;
 
   return (
