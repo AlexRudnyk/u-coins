@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import { useQueryCoins } from "@/hooks/useQueryCoins";
+import s from "./PriceSlider.module.css";
 
 type Props = {
   prices: number[];
@@ -16,18 +16,18 @@ const PriceSlider: FC<Props> = ({ prices }) => {
   const { push } = useRouter();
   const params = new URLSearchParams(searchParams.toString());
 
-  const minPrice = Math.min(...prices);
-  const maxPrice = Math.max(...prices);
+  const minPrice = Number(params.get("fromPrice")) || Math.min(...prices);
+  const maxPrice = Number(params.get("toPrice")) || Math.max(...prices);
 
   const [value, setValue] = useState<number[]>([minPrice, maxPrice]);
 
-  const minDistance = 100;
+  const minDistance = 50;
 
   const debouncedPush = useMemo(
     () =>
       debounce((params: URLSearchParams) => {
-        push(`?${params.toString()}`);
-      }, 500),
+        push(`?${params}`);
+      }, 300),
     [push]
   );
 
@@ -47,44 +47,15 @@ const PriceSlider: FC<Props> = ({ prices }) => {
       setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
       params.set("toPrice", String(newValue[1]));
     }
-
     debouncedPush(params);
   };
 
   return (
-    <div style={{ padding: "30px", width: "300px" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-        }}
-      >
-        <div
-          style={{
-            width: "70px",
-            height: "30px",
-            border: "1px solid gray",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {value[0]}
-        </div>
+    <div className={s.container}>
+      <div className={s.priceRangeWrapper}>
+        <div className={s.priceIndicator}>{value[0]}</div>
         <div> - </div>
-        <div
-          style={{
-            width: "70px",
-            height: "30px",
-            border: "1px solid gray",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {value[1]}
-        </div>
+        <div className={s.priceIndicator}>{value[1]}</div>
       </div>
       <Slider
         getAriaLabel={() => "Minimum distance"}
