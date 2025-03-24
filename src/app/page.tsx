@@ -6,6 +6,7 @@ import {
 
 import CoinsList from "@/components/CoinsList";
 import PriceSlider from "@/components/PriceSlider";
+import SearchInput from "@/components/SearchInput";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
@@ -29,6 +30,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <SearchInput />
       <PriceSlider prices={priceArray} />
       <CoinsList />
     </HydrationBoundary>
