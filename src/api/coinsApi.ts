@@ -9,9 +9,10 @@ export const coinsApi = {
     q?: string
   ): Promise<CoinType[]> => {
     try {
-      console.log("QUERY", fromPrice, toPrice, q);
       const { data } = await axiosInstance.get<CoinType[]>(
-        `coins?fromPrice=${fromPrice}&toPrice=${toPrice}&q=${q}`
+        `coins?fromPrice=${fromPrice || ""}&toPrice=${toPrice || ""}&q=${
+          q || ""
+        }`
       );
       return data ?? [];
     } catch (error: any) {

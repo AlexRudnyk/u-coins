@@ -23,6 +23,29 @@ const PriceSlider: FC<Props> = ({ prices }) => {
 
   const minDistance = 50;
 
+  const marks = [
+    {
+      value: 100,
+      label: "100",
+    },
+    {
+      value: 250,
+      label: "250",
+    },
+    {
+      value: 450,
+      label: "450",
+    },
+    {
+      value: 650,
+      label: "650",
+    },
+    {
+      value: 800,
+      label: "800",
+    },
+  ];
+
   const debouncedPush = useMemo(
     () =>
       debounce((params: URLSearchParams) => {
@@ -66,6 +89,7 @@ const PriceSlider: FC<Props> = ({ prices }) => {
         min={100}
         max={800}
         step={50}
+        marks={marks}
       />
     </div>
   );
