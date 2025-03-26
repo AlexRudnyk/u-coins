@@ -5,20 +5,17 @@ import { useSearchParams } from "next/navigation";
 
 import s from "./CoinsList.module.css";
 
-import { useQueryCoins } from "@/hooks/useQueryCoins";
+import { useQueryFilteredCoins } from "@/hooks/useQueryCoins";
 
 const CoinsList = () => {
   const searchParams = useSearchParams();
 
-  const fromPrice = searchParams.get("fromPrice");
-  const toPrice = searchParams.get("toPrice");
-  const q = searchParams.get("q");
+  const fromPrice = searchParams.get("fromPrice") || "";
+  const toPrice = searchParams.get("toPrice") || "";
+  const q = searchParams.get("q") || "";
 
-  const { data: coins } = useQueryCoins(
-    fromPrice || "",
-    toPrice || "",
-    q || ""
-  );
+  const { data: coins } = useQueryFilteredCoins(fromPrice, toPrice, q);
+
   if (!coins) return;
 
   return (

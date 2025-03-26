@@ -16,17 +16,17 @@ import { CoinType } from "@/types/coin";
 export default async function Home() {
   const queryClient = new QueryClient();
 
-  const fromPrice = "1";
-  const toPrice = "1000";
+  const fromPrice = "";
+  const toPrice = "";
   const q = "";
 
   await queryClient.prefetchQuery({
-    queryKey: coinsKeys.all(fromPrice, toPrice, q),
+    queryKey: coinsKeys.filtered(fromPrice, toPrice, q),
     queryFn: () => coinsApi.getCoins(fromPrice, toPrice, q),
   });
 
   const coins: CoinType[] | undefined = queryClient.getQueryData(
-    coinsKeys.all(fromPrice, toPrice, q)
+    coinsKeys.filtered(fromPrice, toPrice, q)
   );
   const priceArray = coins?.map((coin) => coin.price) ?? [];
 
