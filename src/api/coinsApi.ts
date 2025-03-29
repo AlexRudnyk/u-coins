@@ -1,15 +1,15 @@
 import axiosInstance from "./axiosInstance";
 
-import { CoinType } from "@/types/coin";
+import { Coin } from "@/types/coin";
 
 export const coinsApi = {
   getCoins: async (
     fromPrice?: string,
     toPrice?: string,
     q?: string
-  ): Promise<CoinType[]> => {
+  ): Promise<Coin[]> => {
     try {
-      const { data } = await axiosInstance.get<CoinType[]>(
+      const { data } = await axiosInstance.get<Coin[]>(
         `coins?fromPrice=${fromPrice || ""}&toPrice=${toPrice || ""}&q=${
           q || ""
         }`

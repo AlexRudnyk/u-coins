@@ -1,10 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
 import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
+
+import CustomTextField from "../CustomTextField";
 
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");
@@ -17,7 +19,7 @@ const SearchInput = () => {
   };
 
   const debouncedSetQuery = useMemo(
-    () => debounce((value: string) => setQuery(value), 500),
+    () => debounce((value: string) => setQuery(value), 300),
     []
   );
 
@@ -34,16 +36,12 @@ const SearchInput = () => {
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ errors, setFieldValue, values }) => (
         <Form>
-          <TextField
+          <CustomTextField
             name="search"
-            id="outlined-basic"
+            values={values.search}
+            setFieldValue={setFieldValue}
+            debouncedFn={debouncedSetQuery}
             label="Search"
-            variant="outlined"
-            onChange={(event) => {
-              setFieldValue("search", event.target.value);
-              debouncedSetQuery(event.target.value);
-            }}
-            value={values.search}
           />
           {errors.search && <div>{errors.search}</div>}
 

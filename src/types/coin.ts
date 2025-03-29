@@ -1,4 +1,4 @@
-export interface CoinType {
+export type Coin = {
   _id?: string;
   title: string;
   year: string;
@@ -15,4 +15,4 @@ export interface CoinType {
       date: Date;
     }
   ];
-}
+};
