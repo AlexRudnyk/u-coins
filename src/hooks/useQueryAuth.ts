@@ -1,30 +1,24 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import { authApi } from "@/api/authApi";
-import { RegisterBody } from "@/types/auth";
-
-const authKeys = {
-  register: ["register"],
-  login: ["login"],
-  logout: ["logout"],
-};
+import { LoginBody, RegisterBody } from "@/types/auth";
 
 const useMutateRegister = () => {
-  //   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (registerBody: RegisterBody) => authApi.register(registerBody),
-    // onSuccess: () => queryClient.invalidateQueries({}),
   });
 };
 
-// const useQueryFilteredCoins = (
-//   fromPrice?: string,
-//   toPrice?: string,
-//   q?: string
-// ) =>
-//   useQuery({
-//     queryKey: coinsKeys.filtered(fromPrice || "", toPrice || "", q || ""),
-//     queryFn: () => coinsApi.getCoins(fromPrice, toPrice, q),
-//   });
+const useMutateLogin = () => {
+  return useMutation({
+    mutationFn: (loginBody: LoginBody) => authApi.login(loginBody),
+  });
+};
 
-export { useMutateRegister, authKeys };
+const useMutateLogout = () => {
+  return useMutation({
+    mutationFn: () => authApi.logout(),
+  });
+};
+
+export { useMutateRegister, useMutateLogin, useMutateLogout };

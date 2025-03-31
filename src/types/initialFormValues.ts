@@ -4,3 +4,8 @@ export type InitialRegisterValues = {
   password: string;
   comparePassword: string;
 };
+
+export type InitialLoginValues = {
+  email: string;
+  password: string;
+};

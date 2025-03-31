@@ -11,7 +11,7 @@ import SearchInput from "@/components/SearchInput";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
-import { CoinType } from "@/types/coin";
+import { Coin } from "@/types/coin";
 
 export default async function Home() {
   const queryClient = new QueryClient();
@@ -25,7 +25,7 @@ export default async function Home() {
     queryFn: () => coinsApi.getCoins(fromPrice, toPrice, q),
   });
 
-  const coins: CoinType[] | undefined = queryClient.getQueryData(
+  const coins: Coin[] | undefined = queryClient.getQueryData(
     coinsKeys.filtered(fromPrice, toPrice, q)
   );
   const priceArray = coins?.map((coin) => coin.price) ?? [];

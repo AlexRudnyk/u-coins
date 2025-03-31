@@ -5,11 +5,13 @@ import { Form, Formik, FormikHelpers } from "formik";
 
 import CustomTextField from "../CustomTextField";
 
-import s from "./RegisterForm.module.css";
-
+import { useMutateLogin, useMutateRegister } from "@/hooks/useQueryAuth";
 import { InitialRegisterValues } from "@/types/initialFormValues";
 
 const RegisterForm = () => {
+  const { mutateAsync: mutateRegister } = useMutateRegister();
+  const { mutateAsync: mutateLogin } = useMutateLogin();
+
   const initialValues: InitialRegisterValues = {
     name: "",
     email: "",
@@ -17,12 +19,23 @@ const RegisterForm = () => {
     comparePassword: "",
   };
 
-  const handleSubmit = (
+  const handleSubmit = async (
     values: InitialRegisterValues,
     { resetForm }: FormikHelpers<InitialRegisterValues>
   ) => {
-    console.log("VALUES", values);
-    resetForm();
+    if (values.password !== values.comparePassword) {
+      console.log("PASSWORD DOESN'T MATCH");
+      return;
+    }
+    const createdUser = await mutateRegister(values);
+
+    if (createdUser) {
+      await mutateLogin({
+        email: values.email,
+        password: values.password,
+      });
+      resetForm();
+    }
   };
 
   return (
