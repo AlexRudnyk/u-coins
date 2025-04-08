@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Providers>
-          {/* <Header /> */}
+          <Header />
           <main>{children}</main>
         </Providers>
       </body>

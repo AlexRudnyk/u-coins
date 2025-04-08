@@ -6,11 +6,9 @@ import { Form, Formik, FormikHelpers } from "formik";
 import CustomTextField from "../CustomTextField";
 
 import { useAuthStore } from "@/store";
-// import { useMutateLogin } from "@/hooks/useQueryAuth";
 import { InitialLoginValues } from "@/types/initialFormValues";
 
 const LoginForm = () => {
-  // const { mutateAsync } = useMutateLogin();
   const login = useAuthStore((state) => state.login);
 
   const initialValues: InitialLoginValues = {
@@ -22,7 +20,6 @@ const LoginForm = () => {
     values: InitialLoginValues,
     { resetForm }: FormikHelpers<InitialLoginValues>
   ) => {
-    // mutateAsync(values);
     login(values);
     resetForm();
   };

@@ -1,16 +1,23 @@
 "use client";
 
 import { Button } from "@mui/material";
+import Link from "next/link";
 
-import { useMutateLogout } from "@/hooks/useQueryAuth";
+import { routes } from "@/helpers/routes";
+import { useAuthStore } from "@/store";
 
 const Header = () => {
-  const { mutateAsync } = useMutateLogout();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  return (
-    <Button type="button" variant="contained" onClick={() => mutateAsync}>
+  return isLoggedIn ? (
+    <Button type="button" variant="contained" onClick={() => {}}>
       Logout
     </Button>
+  ) : (
+    <div>
+      <Link href={routes.login}>Login</Link>
+      <Link href={routes.register}>Register</Link>
+    </div>
   );
 };
 
