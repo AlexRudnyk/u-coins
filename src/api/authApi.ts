@@ -1,5 +1,6 @@
 import axiosInstance from "./axiosInstance";
 
+import { storageKeys } from "@/helpers/storageKeys";
 import { LoginBody, RegisterBody } from "@/types/auth";
 import { User } from "@/types/user";
 
@@ -21,6 +22,8 @@ export const authApi = {
   login: async (loginBody: LoginBody): Promise<User> => {
     try {
       const { data } = await axiosInstance.post<User>("auth/login", loginBody);
+      if (data.accessToken)
+        localStorage.setItem(storageKeys.access_token, data.accessToken);
       return data;
     } catch (error: any) {
       const errorMessage =

@@ -21,4 +21,6 @@ export type AuthState = {
 export type AuthActions = {
   register: (registerBody: RegisterBody) => Promise<User | undefined>;
   login: (loginBody: LoginBody) => Promise<void>;
+  logout: () => Promise<void>;
+  clearState: () => void;
 };

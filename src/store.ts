@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 import { authApi } from "./api/authApi";
+import { storageKeys } from "./helpers/storageKeys";
 import { AuthActions, AuthState, LoginBody, RegisterBody } from "./types/auth";
 
 export const useAuthStore = create<AuthState & AuthActions>()(
@@ -40,7 +41,27 @@ export const useAuthStore = create<AuthState & AuthActions>()(
           set({ isRefreshing: false });
         }
       },
+
+      logout: async () => {
+        set({ isRefreshing: true });
+
+        try {
+          await authApi.logout();
+          set({ user: null, isLoggedIn: false });
+          localStorage.removeItem(storageKeys.access_token);
+        } catch (error: any) {
+          const errorMessage =
+            error.response?.data?.message || "Failed to logout a user";
+          set({ error: errorMessage });
+        } finally {
+          set({ isRefreshing: false });
+        }
+      },
+
+      clearState: () => {
+        set({ user: null, isLoggedIn: false });
+      },
     }),
-    { name: "auth-store" }
+    { name: storageKeys.authStore }
   )
 );

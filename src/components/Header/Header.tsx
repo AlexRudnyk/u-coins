@@ -8,9 +8,10 @@ import { useAuthStore } from "@/store";
 
 const Header = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const logout = useAuthStore((state) => state.logout);
 
   return isLoggedIn ? (
-    <Button type="button" variant="contained" onClick={() => {}}>
+    <Button type="button" variant="contained" onClick={logout}>
       Logout
     </Button>
   ) : (
