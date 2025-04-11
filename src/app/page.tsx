@@ -5,9 +5,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import CoinsList from "@/components/CoinsList";
-import PriceSlider from "@/components/PriceSlider";
-import SearchInput from "@/components/SearchInput";
+import HomePage from "@/components/HomePage";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
@@ -33,9 +31,7 @@ export default async function Home() {
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Suspense>
-        <SearchInput />
-        <PriceSlider prices={priceArray} />
-        <CoinsList />
+        <HomePage prices={priceArray} />
       </Suspense>
     </HydrationBoundary>
   );

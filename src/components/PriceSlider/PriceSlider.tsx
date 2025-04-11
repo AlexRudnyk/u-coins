@@ -74,7 +74,7 @@ const PriceSlider: FC<Props> = ({ prices }) => {
   };
 
   return (
-    <div className={s.container}>
+    <div>
       <div className={s.priceRangeWrapper}>
         <div className={s.priceIndicator}>{value[0]}</div>
         <div> - </div>

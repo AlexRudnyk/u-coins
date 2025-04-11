@@ -1,9 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { authApi } from "./api/authApi";
-import { storageKeys } from "./helpers/storageKeys";
-import { AuthActions, AuthState, LoginBody, RegisterBody } from "./types/auth";
+import { authApi } from "../api/authApi";
+import { storageKeys } from "../helpers/storageKeys";
+import { LoginBody, RegisterBody } from "../types/auth";
+
+import { AuthActions, AuthState } from "@/types/stores";
 
 export const useAuthStore = create<AuthState & AuthActions>()(
   persist(

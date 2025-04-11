@@ -1,24 +1,45 @@
 "use client";
 
 import { Button } from "@mui/material";
-import Link from "next/link";
 
-import { routes } from "@/helpers/routes";
-import { useAuthStore } from "@/store";
+import Logo from "../Logo";
+import SearchInput from "../SearchInput";
+
+import s from "./Header.module.css";
+
+import { useAuthStore } from "@/stores/authStore";
+import { useSideModalStore } from "@/stores/sideModalStore";
 
 const Header = () => {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   const logout = useAuthStore((state) => state.logout);
+  const toggleOpen = useSideModalStore((state) => state.toggleOpen);
+  const setType = useSideModalStore((state) => state.setType);
 
-  return isLoggedIn ? (
-    <Button type="button" variant="contained" onClick={logout}>
-      Logout
-    </Button>
-  ) : (
-    <div>
-      <Link href={routes.login}>Login</Link>
-      <Link href={routes.register}>Register</Link>
-    </div>
+  const handleSideModalOpen = (value: "LOGIN" | "REGISTER") => {
+    setType(value);
+    toggleOpen();
+  };
+
+  return (
+    <header className={s.header}>
+      <Logo />
+      <SearchInput />
+      {isLoggedIn ? (
+        <Button type="button" onClick={logout}>
+          Logout
+        </Button>
+      ) : (
+        <div>
+          <Button type="button" onClick={() => handleSideModalOpen("LOGIN")}>
+            Login
+          </Button>
+          <Button type="button" onClick={() => handleSideModalOpen("REGISTER")}>
+            Register
+          </Button>
+        </div>
+      )}
+    </header>
   );
 };
 

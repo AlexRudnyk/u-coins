@@ -1,20 +1,28 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Great_Vibes, Outfit, Red_Hat_Display } from "next/font/google";
 
 import Header from "@/components/Header";
 
 import "./globals.css";
 
 import Providers from "@/providers";
+import SideModal from "@/SideModal";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const greatVibes = Great_Vibes({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--great-vibes-font",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const redHatDisplay = Red_Hat_Display({
   subsets: ["latin"],
+  variable: "--red-hat-display-font",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--outfit-font",
 });
 
 export const metadata: Metadata = {
@@ -29,10 +37,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${greatVibes.variable} ${redHatDisplay.variable} ${outfit.variable}`}
+      >
         <Providers>
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <main>{children}</main>
+          <SideModal />
         </Providers>
       </body>
     </html>
