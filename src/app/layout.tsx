@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Great_Vibes, Outfit, Red_Hat_Display } from "next/font/google";
 
@@ -40,7 +41,9 @@ export default function RootLayout({
         className={`${greatVibes.variable} ${redHatDisplay.variable} ${outfit.variable}`}
       >
         <Providers>
-          <Header />
+          <Suspense>
+            <Header />
+          </Suspense>
           <main>{children}</main>
           <SideModal />
         </Providers>

@@ -1,4 +1,4 @@
-import { FC, Suspense } from "react";
+import { FC } from "react";
 
 import CoinsList from "../CoinsList";
 import Filters from "../Filters";
@@ -13,10 +13,8 @@ const HomePage: FC<Props> = ({ prices }) => {
   return (
     <div className={s.container}>
       <div className={s.pageWrapper}>
-        <Suspense>
-          <Filters prices={prices} />
-          <CoinsList />
-        </Suspense>
+        <Filters prices={prices} />
+        <CoinsList />
       </div>
     </div>
   );
