@@ -5,12 +5,14 @@ import { Form, Formik, FormikHelpers } from "formik";
 
 import CustomTextField from "../CustomTextField";
 
-import { useAuthStore } from "@/store";
+import { useAuthStore } from "@/stores/authStore";
+import { useSideModalStore } from "@/stores/sideModalStore";
 import { InitialRegisterValues } from "@/types/initialFormValues";
 
 const RegisterForm = () => {
   const register = useAuthStore((state) => state.register);
   const login = useAuthStore((state) => state.login);
+  const toggleOpen = useSideModalStore((state) => state.toggleOpen);
 
   const initialValues: InitialRegisterValues = {
     name: "",
@@ -34,6 +36,7 @@ const RegisterForm = () => {
         email: values.email,
         password: values.password,
       });
+      toggleOpen();
       resetForm();
     }
   };

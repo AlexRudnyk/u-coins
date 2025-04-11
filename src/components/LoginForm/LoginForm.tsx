@@ -5,11 +5,13 @@ import { Form, Formik, FormikHelpers } from "formik";
 
 import CustomTextField from "../CustomTextField";
 
-import { useAuthStore } from "@/store";
+import { useAuthStore } from "@/stores/authStore";
+import { useSideModalStore } from "@/stores/sideModalStore";
 import { InitialLoginValues } from "@/types/initialFormValues";
 
 const LoginForm = () => {
   const login = useAuthStore((state) => state.login);
+  const toggleOpen = useSideModalStore((state) => state.toggleOpen);
 
   const initialValues: InitialLoginValues = {
     email: "",
@@ -21,6 +23,7 @@ const LoginForm = () => {
     { resetForm }: FormikHelpers<InitialLoginValues>
   ) => {
     login(values);
+    toggleOpen();
     resetForm();
   };
 

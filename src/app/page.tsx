@@ -11,6 +11,7 @@ import SearchInput from "@/components/SearchInput";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
+import SideModal from "@/SideModal";
 import { Coin } from "@/types/coin";
 
 export default async function Home() {
@@ -36,6 +37,7 @@ export default async function Home() {
         <SearchInput />
         <PriceSlider prices={priceArray} />
         <CoinsList />
+        <SideModal />
       </Suspense>
     </HydrationBoundary>
   );

@@ -3,7 +3,7 @@
 import { FC, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { useAuthStore } from "@/store";
+import { useAuthStore } from "@/stores/authStore";
 
 type Props = {
   children: React.ReactNode;
