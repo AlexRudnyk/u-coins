@@ -2,6 +2,11 @@
 
 import { Button } from "@mui/material";
 
+import Logo from "../Logo";
+import SearchInput from "../SearchInput";
+
+import s from "./Header.module.css";
+
 import { useAuthStore } from "@/stores/authStore";
 import { useSideModalStore } from "@/stores/sideModalStore";
 
@@ -16,19 +21,25 @@ const Header = () => {
     toggleOpen();
   };
 
-  return isLoggedIn ? (
-    <Button type="button" variant="contained" onClick={logout}>
-      Logout
-    </Button>
-  ) : (
-    <div>
-      <Button type="button" onClick={() => handleSideModalOpen("LOGIN")}>
-        Login
-      </Button>
-      <Button type="button" onClick={() => handleSideModalOpen("REGISTER")}>
-        Register
-      </Button>
-    </div>
+  return (
+    <header className={s.header}>
+      <Logo />
+      <SearchInput />
+      {isLoggedIn ? (
+        <Button type="button" onClick={logout}>
+          Logout
+        </Button>
+      ) : (
+        <div>
+          <Button type="button" onClick={() => handleSideModalOpen("LOGIN")}>
+            Login
+          </Button>
+          <Button type="button" onClick={() => handleSideModalOpen("REGISTER")}>
+            Register
+          </Button>
+        </div>
+      )}
+    </header>
   );
 };
 

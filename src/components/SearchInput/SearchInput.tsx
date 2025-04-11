@@ -42,6 +42,7 @@ const SearchInput = () => {
             setFieldValue={setFieldValue}
             debouncedFn={debouncedSetQuery}
             label="Search"
+            size="small"
           />
           {errors.search && <div>{errors.search}</div>}
 

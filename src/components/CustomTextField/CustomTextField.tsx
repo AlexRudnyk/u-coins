@@ -10,6 +10,7 @@ type Props = {
   debouncedFn?: (value: string) => void;
   type?: "text" | "email" | "password" | "number";
   label: string;
+  size?: "small" | "medium";
 };
 
 const CustomTextField: FC<Props> = ({
@@ -19,6 +20,7 @@ const CustomTextField: FC<Props> = ({
   setFieldValue,
   debouncedFn,
   label,
+  size,
 }) => {
   return (
     <TextField
@@ -32,6 +34,7 @@ const CustomTextField: FC<Props> = ({
         if (debouncedFn) debouncedFn(event.target.value);
       }}
       value={values}
+      size={size}
     />
   );
 };
