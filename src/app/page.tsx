@@ -1,17 +1,13 @@
-import { Suspense } from "react";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
 
-import CoinsList from "@/components/CoinsList";
 import HomePage from "@/components/HomePage";
-import PriceSlider from "@/components/PriceSlider";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
-// import SideModal from "@/SideModal";
 import { Coin } from "@/types/coin";
 
 export default async function Home() {
@@ -33,9 +29,7 @@ export default async function Home() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Suspense>
-        <HomePage prices={priceArray} />
-      </Suspense>
+      <HomePage prices={priceArray} />
     </HydrationBoundary>
   );
 }
