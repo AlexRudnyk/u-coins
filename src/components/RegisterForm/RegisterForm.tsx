@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Button } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
 
@@ -21,16 +19,6 @@ const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-  const handleMouseUpPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
 
   const initialValues: InitialRegisterValues = {
     name: "",
@@ -82,18 +70,24 @@ const RegisterForm = () => {
             {errors.email && <div>{errors.email}</div>}
             <CustomTextField
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="Password"
               setFieldValue={setFieldValue}
               values={values.password}
+              showPassword={showPassword}
+              handleClickShowPassword={handleClickShowPassword}
+              input="password"
             />
             {errors.password && <div>{errors.password}</div>}
             <CustomTextField
               name="comparePassword"
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="Compare Password"
               setFieldValue={setFieldValue}
               values={values.comparePassword}
+              showPassword={showPassword}
+              handleClickShowPassword={handleClickShowPassword}
+              input="password"
             />
             {errors.comparePassword && <div>{errors.comparePassword}</div>}
 

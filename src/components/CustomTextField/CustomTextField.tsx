@@ -1,7 +1,13 @@
 "use client";
 
 import { FC } from "react";
-import { TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
+import Image from "next/image";
+
+import closedEye from "../../../public/icons/closed-eye.svg";
+import openedEye from "../../../public/icons/opened-eye.svg";
+
+import s from "./CustomTextField.module.css";
 
 type Props = {
   name: string;
@@ -11,6 +17,9 @@ type Props = {
   type?: "text" | "email" | "password" | "number";
   label: string;
   size?: "small" | "medium";
+  showPassword?: boolean;
+  handleClickShowPassword?: () => void;
+  input?: string;
 };
 
 const CustomTextField: FC<Props> = ({
@@ -21,21 +30,46 @@ const CustomTextField: FC<Props> = ({
   debouncedFn,
   label,
   size,
+  showPassword,
+  handleClickShowPassword,
+  input,
 }) => {
+  const paddingRight = input === "password" ? "48px" : "0";
+
   return (
-    <TextField
-      name={name}
-      id="outlined-basic"
-      label={label}
-      variant="outlined"
-      type={type}
-      onChange={(event) => {
-        setFieldValue(name, event.target.value);
-        if (debouncedFn) debouncedFn(event.target.value);
-      }}
-      value={values}
-      size={size}
-    />
+    <div className={s.wrapper}>
+      {input === "password" && (
+        <div className={s.iconButton} onClick={handleClickShowPassword}>
+          <IconButton>
+            <Image
+              src={showPassword ? closedEye : openedEye}
+              alt="show password eye"
+              width={32}
+              height={32}
+            />
+          </IconButton>
+        </div>
+      )}
+      <TextField
+        name={name}
+        id="outlined-basic"
+        label={label}
+        variant="outlined"
+        type={type}
+        onChange={(event) => {
+          setFieldValue(name, event.target.value);
+          if (debouncedFn) debouncedFn(event.target.value);
+        }}
+        value={values}
+        size={size}
+        sx={{
+          width: "100%",
+          "& .MuiInputBase-input": {
+            paddingRight,
+          },
+        }}
+      />
+    </div>
   );
 };
 

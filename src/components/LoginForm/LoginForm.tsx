@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
 
@@ -14,6 +15,9 @@ import { InitialLoginValues } from "@/types/initialFormValues";
 const LoginForm = () => {
   const login = useAuthStore((state) => state.login);
   const toggleOpen = useSideModalStore((state) => state.toggleOpen);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const initialValues: InitialLoginValues = {
     email: "",
@@ -45,10 +49,13 @@ const LoginForm = () => {
             {errors.email && <div>{errors.email}</div>}
             <CustomTextField
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               label="Password"
               setFieldValue={setFieldValue}
               values={values.password}
+              showPassword={showPassword}
+              handleClickShowPassword={handleClickShowPassword}
+              input="password"
             />
             {errors.password && <div>{errors.password}</div>}
 

@@ -8,6 +8,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import CustomTextField from "../CustomTextField";
 
+import s from "./SearchInput.module.css";
+
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");
   const searchParams = useSearchParams();
@@ -35,7 +37,7 @@ const SearchInput = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ errors, setFieldValue, values }) => (
-        <Form>
+        <Form className={s.form}>
           <CustomTextField
             name="search"
             values={values.search}
