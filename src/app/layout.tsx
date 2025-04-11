@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import "./globals.css";
 
 import Providers from "@/providers";
+import SideModal from "@/SideModal";
 
 const greatVibes = Great_Vibes({
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main>{children}</main>
+          <SideModal />
         </Providers>
       </body>
     </html>

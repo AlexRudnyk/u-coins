@@ -43,13 +43,12 @@ const SearchInput = () => {
             values={values.search}
             setFieldValue={setFieldValue}
             debouncedFn={debouncedSetQuery}
-            label="Search"
             size="small"
           />
           {errors.search && <div>{errors.search}</div>}
 
           <Button type="submit" variant="contained">
-            Submit
+            Search
           </Button>
         </Form>
       )}

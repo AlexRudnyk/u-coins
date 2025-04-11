@@ -8,6 +8,7 @@
 
 .formTitle {
   text-align: center;
+  font-family: var(--red-hat-display-font);
 }
 
 .form {

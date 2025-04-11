@@ -15,7 +15,7 @@ type Props = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
   debouncedFn?: (value: string) => void;
   type?: "text" | "email" | "password" | "number";
-  label: string;
+  label?: string;
   size?: "small" | "medium";
   showPassword?: boolean;
   handleClickShowPassword?: () => void;

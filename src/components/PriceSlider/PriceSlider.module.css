@@ -1,8 +1,3 @@
-.container {
-  width: 300px;
-  padding: 30px;
-}
-
 .priceRangeWrapper {
   display: flex;
   justify-content: space-around;
