@@ -24,6 +24,8 @@ export const coinsApi = {
 
   getCoinById: async (id: string): Promise<Coin> => {
     try {
+      const { data } = await axiosInstance.get<Coin>(`coins/${id}`);
+      return data;
     } catch (error: any) {
       const errorMessage =
         error.response?.data?.message || "Failed to fetch product by ID";

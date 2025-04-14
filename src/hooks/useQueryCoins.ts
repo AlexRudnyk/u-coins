@@ -3,10 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { coinsApi } from "@/api/coinsApi";
 
 const coinsKeys = {
+  all: ["coins"],
   filtered: (fromPrice: string, toPrice: string, q: string) => [
     ["coins", fromPrice, toPrice, q],
   ],
-  //   getOne: (id: string) => [...productsKeys.all, id],
+  getOne: (id: string) => [...coinsKeys.all, id],
 };
 
 const useQueryFilteredCoins = (
@@ -19,4 +20,10 @@ const useQueryFilteredCoins = (
     queryFn: () => coinsApi.getCoins(fromPrice, toPrice, q),
   });
 
-export { useQueryFilteredCoins, coinsKeys };
+const useQueryCoinById = (id: string) =>
+  useQuery({
+    queryKey: coinsKeys.getOne(id),
+    queryFn: () => coinsApi.getCoinById(id),
+  });
+
+export { useQueryFilteredCoins, useQueryCoinById, coinsKeys };

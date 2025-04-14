@@ -2,7 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import s from "./CoinItem.module.scss";
+import s from "./CoinsListItem.module.scss";
 
 import { Coin } from "@/types/coin";
 
@@ -10,7 +10,7 @@ type Props = {
   coin: Coin;
 };
 
-const CoinItem: FC<Props> = ({ coin }) => {
+const CoinsListItem: FC<Props> = ({ coin }) => {
   return (
     <Link href={`coins/${coin._id}`}>
       <li className={s.coinsListItem}>
@@ -24,4 +24,4 @@ const CoinItem: FC<Props> = ({ coin }) => {
   );
 };
 
-export default CoinItem;
+export default CoinsListItem;

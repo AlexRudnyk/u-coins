@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 
-import CoinItem from "../CoinItem";
+import CoinsListItem from "../CoinsListItem";
 
 import s from "./CoinsList.module.scss";
 
@@ -22,7 +22,7 @@ const CoinsList = () => {
   return (
     <ul className={s.coinsList}>
       {coins?.map((coin) => (
-        <CoinItem key={coin._id} coin={coin} />
+        <CoinsListItem key={coin._id} coin={coin} />
       ))}
     </ul>
   );

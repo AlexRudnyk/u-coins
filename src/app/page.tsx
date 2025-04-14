@@ -4,12 +4,18 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 import HomePage from "@/components/HomePage";
 
 import { coinsApi } from "@/api/coinsApi";
 import { coinsKeys } from "@/hooks/useQueryCoins";
 import { Coin } from "@/types/coin";
+
+export const metadata: Metadata = {
+  title: "U-Coins",
+  description: "E-commerce shop of ukrainian coins",
+};
 
 export default async function Home() {
   const queryClient = new QueryClient();
