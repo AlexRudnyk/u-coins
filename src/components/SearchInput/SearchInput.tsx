@@ -29,6 +29,8 @@ const SearchInput = () => {
     values: { search: string },
     { resetForm }: FormikHelpers<{ search: string }>
   ) => {
+    params.delete("fromPrice");
+    params.delete("toPrice");
     params.set("q", query);
     push(`search?${params}`);
     resetForm();
