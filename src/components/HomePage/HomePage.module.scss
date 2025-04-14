@@ -1,8 +1,7 @@
+@use "../../mixins.scss" as m;
+
 .container {
-  margin: 0 auto;
-  padding: 64px 64px;
-  max-width: 1440px;
-  width: 100%;
+  @include m.container;
 }
 
 .pageWrapper {
