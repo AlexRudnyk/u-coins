@@ -1,14 +1,16 @@
 "use client";
 
+import React from "react";
 import { useSearchParams } from "next/navigation";
 
+import CoinsList from "../CoinsList";
 import CoinsListItem from "../CoinsListItem";
 
-import s from "./CoinsList.module.scss";
+import s from "./SearchResults.module.scss";
 
 import { useQueryFilteredCoins } from "@/hooks/useQueryCoins";
 
-const CoinsList = () => {
+const SearchResults = () => {
   const searchParams = useSearchParams();
 
   const fromPrice = searchParams.get("fromPrice") || "";
@@ -17,13 +19,19 @@ const CoinsList = () => {
 
   const { data: coins } = useQueryFilteredCoins(fromPrice, toPrice, q);
 
+  if (!coins) return;
+
+  console.log("RESULT", coins);
+
   return (
-    <ul className={s.coinsList}>
-      {coins?.map((coin) => (
-        <CoinsListItem key={coin._id} coin={coin} />
-      ))}
-    </ul>
+    <div className={s.container}>
+      <ul className={s.coinsList}>
+        {coins?.map((coin) => (
+          <CoinsListItem key={coin._id} coin={coin} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default CoinsList;
+export default SearchResults;

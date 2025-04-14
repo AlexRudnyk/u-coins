@@ -30,7 +30,7 @@ const SearchInput = () => {
     { resetForm }: FormikHelpers<{ search: string }>
   ) => {
     params.set("q", query);
-    push(`?${params}`);
+    push(`search?${params}`);
     resetForm();
   };
 
@@ -42,7 +42,7 @@ const SearchInput = () => {
             name="search"
             values={values.search}
             setFieldValue={setFieldValue}
-            debouncedFn={debouncedSetQuery}
+            onChangeFn={debouncedSetQuery}
             size="small"
           />
           {errors.search && <div>{errors.search}</div>}

@@ -13,7 +13,7 @@ type Props = {
   name: string;
   values: string;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void;
-  debouncedFn?: (value: string) => void;
+  onChangeFn?: (value: string) => void;
   type?: "text" | "email" | "password" | "number";
   label?: string;
   size?: "small" | "medium";
@@ -27,7 +27,7 @@ const CustomTextField: FC<Props> = ({
   values,
   type,
   setFieldValue,
-  debouncedFn,
+  onChangeFn,
   label,
   size,
   showPassword,
@@ -58,7 +58,7 @@ const CustomTextField: FC<Props> = ({
         type={type}
         onChange={(event) => {
           setFieldValue(name, event.target.value);
-          if (debouncedFn) debouncedFn(event.target.value);
+          if (onChangeFn) onChangeFn(event.target.value);
         }}
         value={values}
         size={size}
