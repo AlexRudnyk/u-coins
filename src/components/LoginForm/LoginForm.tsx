@@ -6,7 +6,7 @@ import { Form, Formik, FormikHelpers } from "formik";
 
 import CustomTextField from "../CustomTextField";
 
-import s from "./LoginForm.module.css";
+import s from "./LoginForm.module.scss";
 
 import { useAuthStore } from "@/stores/authStore";
 import { useSideModalStore } from "@/stores/sideModalStore";

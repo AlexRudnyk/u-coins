@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import CustomTextField from "../CustomTextField";
 
-import s from "./SearchInput.module.css";
+import s from "./SearchInput.module.scss";
 
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");

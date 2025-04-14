@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import s from "./CoinsList.module.css";
+import s from "./CoinsList.module.scss";
 
 import { useQueryFilteredCoins } from "@/hooks/useQueryCoins";
 

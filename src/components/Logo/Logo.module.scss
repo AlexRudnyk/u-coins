@@ -1,0 +1,5 @@
+@use "../../mixins.scss" as m;
+
+.logoBrand {
+  @include m.brandFont(36px);
+}

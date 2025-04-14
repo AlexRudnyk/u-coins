@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import s from "./Logo.module.css";
+import s from "./Logo.module.scss";
 
 import { routes } from "@/helpers/routes";
 

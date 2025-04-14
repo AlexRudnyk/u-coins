@@ -1,0 +1,75 @@
+@use "./variables.scss" as v;
+
+@mixin titleFont($size: 16px) {
+  font-family: v.$outfit-font;
+  font-size: $size;
+}
+@mixin bodyFont($size: 16px) {
+  font-family: v.$red-hat-display-font;
+  font-size: $size;
+}
+@mixin brandFont($size: 16px) {
+  font-family: v.$great-vibes-font;
+  font-size: $size;
+}
+
+@mixin query($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media_1920 {
+  @include query(1920px) {
+    @content;
+  }
+}
+
+@mixin media_1536 {
+  @include query(1536px) {
+    @content;
+  }
+}
+
+@mixin media_1440 {
+  @include query(1440px) {
+    @content;
+  }
+}
+
+@mixin media_1248 {
+  @include query(1248px) {
+    @content;
+  }
+}
+
+@mixin media_920 {
+  @include query(920px) {
+    @content;
+  }
+}
+
+@mixin media_768 {
+  @include query(768px) {
+    @content;
+  }
+}
+
+@mixin media_480 {
+  @include query(480px) {
+    @content;
+  }
+}
+
+@mixin container {
+  margin: 0 auto;
+  padding: 64px 64px;
+  max-width: 1440px;
+  width: 100%;
+  @include media-1248 {
+    padding: 40px;
+  }
+  @include media_480 {
+    padding: 32px 20px;
+  }
+}

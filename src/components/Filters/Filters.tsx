@@ -2,8 +2,6 @@ import { FC } from "react";
 
 import PriceSlider from "../PriceSlider";
 
-import s from "./Filters.module.css";
-
 type Props = {
   prices: number[];
 };
