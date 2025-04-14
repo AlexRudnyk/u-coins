@@ -1,0 +1,11 @@
+@use "../../mixins.scss" as m;
+
+.container {
+  @include m.container;
+}
+
+.pageWrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  gap: 64px;
+}

@@ -3,7 +3,7 @@ import { FC } from "react";
 import CoinsList from "../CoinsList";
 import Filters from "../Filters";
 
-import s from "./HomePage.module.css";
+import s from "./HomePage.module.scss";
 
 type Props = {
   prices: number[];

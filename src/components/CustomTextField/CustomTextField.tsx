@@ -7,7 +7,7 @@ import Image from "next/image";
 import closedEye from "../../../public/icons/closed-eye.svg";
 import openedEye from "../../../public/icons/opened-eye.svg";
 
-import s from "./CustomTextField.module.css";
+import s from "./CustomTextField.module.scss";
 
 type Props = {
   name: string;

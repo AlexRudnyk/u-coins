@@ -1,9 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import s from "./CoinsList.module.css";
+import CoinsListItem from "../CoinsListItem";
+
+import s from "./CoinsList.module.scss";
 
 import { useQueryFilteredCoins } from "@/hooks/useQueryCoins";
 
@@ -21,11 +22,7 @@ const CoinsList = () => {
   return (
     <ul className={s.coinsList}>
       {coins?.map((coin) => (
-        <li key={coin._id}>
-          <Image src={coin.photoURL[0]} alt="coin" width={150} height={150} />
-          <p>{coin.title}</p>
-          <p>Price: {coin.price} UAH</p>
-        </li>
+        <CoinsListItem key={coin._id} coin={coin} />
       ))}
     </ul>
   );

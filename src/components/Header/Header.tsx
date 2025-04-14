@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import Logo from "../Logo";
 import SearchInput from "../SearchInput";
 
-import s from "./Header.module.css";
+import s from "./Header.module.scss";
 
 import { useAuthStore } from "@/stores/authStore";
 import { useSideModalStore } from "@/stores/sideModalStore";

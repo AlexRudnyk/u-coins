@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { debounce } from "lodash";
 import { useRouter, useSearchParams } from "next/navigation";
 
-import s from "./PriceSlider.module.css";
+import s from "./PriceSlider.module.scss";
 
 type Props = {
   prices: number[];

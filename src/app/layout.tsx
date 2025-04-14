@@ -4,7 +4,7 @@ import { Great_Vibes, Outfit, Red_Hat_Display } from "next/font/google";
 
 import Header from "@/components/Header";
 
-import "./globals.css";
+import "./globals.scss";
 
 import Providers from "@/providers";
 import SideModal from "@/SideModal";
