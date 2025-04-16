@@ -1,6 +1,6 @@
 .searchList {
   position: absolute;
-  top: 50px;
+  top: 40px;
   left: 0;
 
   background-color: #fff;
@@ -10,4 +10,6 @@
   flex-direction: column;
   gap: 8px;
   width: 312px;
+  border: 1px solid lightgray;
+  padding: 8px;
 }

@@ -10,3 +10,14 @@
   gap: 8px;
   width: 400px;
 }
+
+.nothingFoundWrapper {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: #fff;
+  z-index: 10;
+  width: 312px;
+  border: 1px solid lightgray;
+  padding: 8px;
+}

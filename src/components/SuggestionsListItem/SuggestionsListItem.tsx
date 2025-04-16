@@ -34,10 +34,12 @@ const SuggestionsListItem: FC<Props> = ({
   return (
     <li className={s.searchListItem} onClick={handleAfterSuggestionClick}>
       <Link href={`/coins/${coin._id}`} className={s.searchListItemLink}>
-        <Image src={coin.photoURL[0]} alt="coin" width={32} height={32} />
-        <p>
-          {coin.title} {coin.year}
-        </p>
+        <div className={s.imageAndTitleWrapper}>
+          <Image src={coin.photoURL[0]} alt="coin" width={32} height={32} />
+          <p>
+            {coin.title} {coin.year}
+          </p>
+        </div>
         <p>{coin.price} UAH</p>
       </Link>
     </li>
