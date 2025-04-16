@@ -1,5 +1,11 @@
+import { Suspense } from "react";
+
 import SearchResults from "@/components/SearchResults";
 
 export default function Page() {
-  return <SearchResults />;
+  return (
+    <Suspense>
+      <SearchResults />
+    </Suspense>
+  );
 }
