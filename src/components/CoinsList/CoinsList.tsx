@@ -17,8 +17,6 @@ const CoinsList = () => {
 
   const { data: coins } = useQueryFilteredCoins(fromPrice, toPrice, q);
 
-  if (!coins) return;
-
   return (
     <ul className={s.coinsList}>
       {coins?.map((coin) => (

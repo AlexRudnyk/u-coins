@@ -1,0 +1,21 @@
+@use "../../mixins.scss" as m;
+
+.container {
+  @include m.container;
+}
+
+.coinsList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.flexWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notFoundText {
+  @include m.titleFont(24px);
+}
