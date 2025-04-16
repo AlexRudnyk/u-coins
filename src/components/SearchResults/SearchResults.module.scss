@@ -4,12 +4,6 @@
   @include m.container;
 }
 
-.coinsList {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-
 .flexWrapper {
   display: flex;
   justify-content: center;
@@ -18,4 +12,21 @@
 
 .notFoundText {
   @include m.titleFont(24px);
+}
+
+.searchQueryText {
+  padding-bottom: 32px;
+  border-bottom: 2px solid lightgrey;
+  margin-bottom: 24px;
+
+  @include m.bodyFont(24px);
+}
+
+.matchRequestText {
+  margin-bottom: 48px;
+
+  @include m.bodyFont(24px);
+  & {
+    font-weight: 700;
+  }
 }

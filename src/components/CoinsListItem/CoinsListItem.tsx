@@ -1,4 +1,5 @@
 import { FC } from "react";
+import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,15 +13,31 @@ type Props = {
 
 const CoinsListItem: FC<Props> = ({ coin }) => {
   return (
-    <Link href={`coins/${coin._id}`}>
-      <li className={s.coinsListItem}>
-        <Image src={coin.photoURL[0]} alt="coin" width={150} height={150} />
+    <li className={s.coinListItem}>
+      <Link href={`coins/${coin._id}`}>
+        <div className={s.imageContainer}>
+          <Image
+            src={coin.photoURL[0]}
+            alt="coin"
+            width={150}
+            height={150}
+            className={cn(s.image, s.defaultImage)}
+          />
+          <Image
+            src={coin.photoURL[1]}
+            alt="coin"
+            width={150}
+            height={150}
+            className={cn(s.image, s.hoveredImage)}
+          />
+        </div>
         <p>
           {coin.title} {coin.year}
         </p>
-        <p>Price: {coin.price} UAH</p>
-      </li>
-    </Link>
+        <p>{coin.spec}</p>
+      </Link>
+      <p>Price: {coin.price} UAH</p>
+    </li>
   );
 };
 

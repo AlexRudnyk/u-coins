@@ -97,14 +97,20 @@ const SearchInput = () => {
             <Button type="submit" variant="contained">
               Search
             </Button>
-            {isSuggestionsOpen && query !== "" && (
-              <SuggestionsList
-                searchCoins={searchCoins}
-                setIsSuggestionsOpen={setIsSuggestionsOpen}
-                resetForm={resetForm}
-                ref={suggestionsRef}
-              />
-            )}
+            {isSuggestionsOpen &&
+              query !== "" &&
+              (searchCoins.length !== 0 ? (
+                <SuggestionsList
+                  searchCoins={searchCoins}
+                  setIsSuggestionsOpen={setIsSuggestionsOpen}
+                  resetForm={resetForm}
+                  ref={suggestionsRef}
+                />
+              ) : (
+                <div className={s.nothingFoundWrapper}>
+                  Nothing found by your request
+                </div>
+              ))}
           </Form>
         )}
       </Formik>

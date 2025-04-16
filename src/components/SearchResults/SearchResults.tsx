@@ -5,7 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useSearchParams } from "next/navigation";
 
 import BreadCrumbs from "../BreadCrumbs";
-import CoinsListItem from "../CoinsListItem";
+import SearchResultsList from "../SearchResultsList";
 
 import s from "./SearchResults.module.scss";
 
@@ -29,29 +29,21 @@ const breadCrumbs: Crumb[] = [
 const SearchResults = () => {
   const searchParams = useSearchParams();
 
-  const fromPrice = "";
-  const toPrice = "";
   const q = searchParams.get("q") || "";
 
-  const { data: coins, isPending } = useQueryFilteredCoins(
-    fromPrice,
-    toPrice,
-    q
-  );
+  const { data: coins, isPending } = useQueryFilteredCoins("", "", q);
 
   return (
     <div className={s.container}>
       <BreadCrumbs crumbs={breadCrumbs} />
+      <p className={s.searchQueryText}>Your search query: &quot;{q}&quot;</p>
+      <p className={s.matchRequestText}>Goods, that match your request</p>
       {isPending ? (
         <div className={s.flexWrapper}>
           <CircularProgress />
         </div>
       ) : coins && coins.length > 0 ? (
-        <ul className={s.coinsList}>
-          {coins?.map((coin) => (
-            <CoinsListItem key={coin._id} coin={coin} />
-          ))}
-        </ul>
+        <SearchResultsList coins={coins} />
       ) : (
         <div className={s.flexWrapper}>
           <p className={s.notFoundText}>
