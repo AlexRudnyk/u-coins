@@ -1,3 +1,53 @@
-.coinsListItem img {
+@use "../../mixins.scss" as m;
+
+.coinListItem {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  border: 2px solid lightgrey;
+  border-radius: 4px;
+  padding: 8px;
+
+  img {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  p {
+    @include m.bodyFont();
+  }
+}
+
+.imageContainer {
+  position: relative;
   width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Ensure image fits container
+  transition: opacity 0.3s ease-in-out;
+}
+
+.defaultImage {
+  opacity: 1;
+}
+
+.hoveredImage {
+  opacity: 0;
+}
+
+.imageContainer:hover {
+  .defaultImage {
+    opacity: 0;
+  }
+
+  .hoveredImage {
+    opacity: 1;
+  }
 }

@@ -36,6 +36,8 @@ const SearchResults = () => {
   return (
     <div className={s.container}>
       <BreadCrumbs crumbs={breadCrumbs} />
+      <p className={s.searchQueryText}>Your search query: &quot;{q}&quot;</p>
+      <p className={s.matchRequestText}>Goods, that match your request</p>
       {isPending ? (
         <div className={s.flexWrapper}>
           <CircularProgress />

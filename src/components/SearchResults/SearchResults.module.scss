@@ -13,3 +13,20 @@
 .notFoundText {
   @include m.titleFont(24px);
 }
+
+.searchQueryText {
+  padding-bottom: 32px;
+  border-bottom: 2px solid lightgrey;
+  margin-bottom: 24px;
+
+  @include m.bodyFont(24px);
+}
+
+.matchRequestText {
+  margin-bottom: 48px;
+
+  @include m.bodyFont(24px);
+  & {
+    font-weight: 700;
+  }
+}
