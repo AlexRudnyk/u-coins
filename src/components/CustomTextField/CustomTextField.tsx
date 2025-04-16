@@ -60,6 +60,7 @@ const CustomTextField: FC<Props> = ({
           setFieldValue(name, event.target.value);
           if (onChangeFn) onChangeFn(event.target.value);
         }}
+        autoComplete="off"
         value={values}
         size={size}
         sx={{
