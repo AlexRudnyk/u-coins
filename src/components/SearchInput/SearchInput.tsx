@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@mui/material";
 import { Form, Formik, FormikHelpers } from "formik";
 import { debounce } from "lodash";
@@ -17,9 +17,14 @@ import { Coin } from "@/types/coin";
 const SearchInput = () => {
   const [query, setQuery] = useState<string>("");
   const [searchCoins, setSearchCoins] = useState<Coin[]>([]);
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState<boolean>(false);
   const searchParams = useSearchParams();
   const { push } = useRouter();
   const params = new URLSearchParams(searchParams.toString());
+  const suggestionsRef = useRef<HTMLUListElement>(null);
+
+  // const handleSuggestionsOpenToggle = () =>
+  //   setIsSuggestionsOpen(!isSuggestionsOpen);
 
   const debouncedGetSearchCoins = useMemo(
     () =>
@@ -27,6 +32,7 @@ const SearchInput = () => {
         if (searchQuery !== "") {
           const res = await coinsApi.getCoins("", "", searchQuery);
           setSearchCoins(res);
+          setIsSuggestionsOpen(true);
         } else {
           setSearchCoins([]);
         }
@@ -46,6 +52,22 @@ const SearchInput = () => {
     search: "",
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        suggestionsRef.current &&
+        !suggestionsRef.current.contains(event.target as Node)
+      ) {
+        setIsSuggestionsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleSubmit = (
     values: { search: string },
     { resetForm }: FormikHelpers<{ search: string }>
@@ -55,12 +77,13 @@ const SearchInput = () => {
     params.set("q", query);
     push(`search?${params}`);
     resetForm();
+    setIsSuggestionsOpen(false);
   };
 
   return (
     <div className={s.searchInputWrapper}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        {({ errors, setFieldValue, values }) => (
+        {({ errors, setFieldValue, values, resetForm }) => (
           <Form className={s.form}>
             <CustomTextField
               name="search"
@@ -74,10 +97,17 @@ const SearchInput = () => {
             <Button type="submit" variant="contained">
               Search
             </Button>
+            {isSuggestionsOpen && query !== "" && (
+              <SuggestionsList
+                searchCoins={searchCoins}
+                setIsSuggestionsOpen={setIsSuggestionsOpen}
+                resetForm={resetForm}
+                ref={suggestionsRef}
+              />
+            )}
           </Form>
         )}
       </Formik>
-      {query !== "" && <SuggestionsList searchCoins={searchCoins} />}
     </div>
   );
 };
